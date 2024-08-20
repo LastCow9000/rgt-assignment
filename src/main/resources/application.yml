@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: assignment
+
+  jpa:
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+        highlight_sql: true
+
+  jwt:
+    secret: qwieqwjiudnqwkdqwndqwdiqywbqwndquikehqekwqjebq
