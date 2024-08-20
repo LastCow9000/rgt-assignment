@@ -65,8 +65,8 @@ public class ReissueService {
 
         this.refreshTokenRepository.save(refreshTokenEntity);
     }
-    
-    @Scheduled(cron = "* 0/3 * * *")
+
+    @Scheduled(cron = "0 0 0/3 * * *")
     @Transactional
     public void deleteExpiredRefreshToken() {
         List<RefreshToken> refreshTokens = this.refreshTokenRepository.findByExpirationBefore(
