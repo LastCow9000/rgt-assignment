@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum Time {
     TEN_MIN(1000 * 60 * 10L),
-    TWENTY_FOUR(1000 * 60 * 60 * 24L);
+    TWENTY_FOUR_HOUR(1000 * 60 * 60 * 24L);
 
     private final Long value;
 }

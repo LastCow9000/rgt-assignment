@@ -2,7 +2,7 @@ package com.rgt.assignment.controller;
 
 import com.rgt.assignment.constants.ResultStatus;
 import com.rgt.assignment.dto.RegisterDto;
-import com.rgt.assignment.dto.RegisterResponseDto;
+import com.rgt.assignment.dto.ResponseDto;
 import com.rgt.assignment.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,15 +20,15 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping()
-    public ResponseEntity<RegisterResponseDto> register(@RequestBody RegisterDto registerDto) {
-        RegisterResponseDto registerResponseDto = new RegisterResponseDto();
+    public ResponseEntity<ResponseDto> register(@RequestBody RegisterDto registerDto) {
+        ResponseDto responseDto = new ResponseDto();
         try {
             this.userService.register(registerDto);
-            registerResponseDto.setMessage(ResultStatus.SUCCESS.toString());
+            responseDto.setMessage(ResultStatus.SUCCESS.toString());
         } catch (ResponseStatusException e) {
-            registerResponseDto.setMessage(e.getReason());
-            return ResponseEntity.status(e.getStatusCode()).body(registerResponseDto);
+            responseDto.setMessage(e.getReason());
+            return ResponseEntity.status(e.getStatusCode()).body(responseDto);
         }
-        return ResponseEntity.status(HttpStatus.CREATED).body(registerResponseDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
     }
 }

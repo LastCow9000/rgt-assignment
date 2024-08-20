@@ -7,6 +7,7 @@ import com.rgt.assignment.dto.CustomUserDetails;
 import com.rgt.assignment.entity.User;
 import com.rgt.assignment.util.JwtUtil;
 import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.security.SignatureException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -40,6 +41,10 @@ public class JwtFilter extends OncePerRequestFilter {
             jwtUtil.isExpired(accessToken);
         } catch (ExpiredJwtException e) {
             response.getWriter().print(EXPIRED_TOKEN);
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            return;
+        } catch (SignatureException e) {
+            response.getWriter().print(INVALID_TOKEN);
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return;
         }
