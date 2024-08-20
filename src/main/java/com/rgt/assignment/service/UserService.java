@@ -17,7 +17,7 @@ public class UserService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public void register(RegisterDto registerDto) {
-        String username = registerDto.getUsername();
+        String username = registerDto.getId();
         String password = registerDto.getPassword();
 
         boolean isExist = this.userRepository.existsByUsername(username);
