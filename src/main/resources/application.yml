@@ -11,9 +11,14 @@ spring:
         format_sql: true
         show_sql: true
         highlight_sql: true
+    defer-datasource-initialization: true
 
   jwt:
     secret: qwieqwjiudnqwkdqwndqwdiqywbqwndquikehqekwqjebq
+
+  sql:
+    init:
+      mode: always
 
 server:
   port: 8090
