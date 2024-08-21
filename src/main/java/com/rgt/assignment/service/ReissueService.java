@@ -8,7 +8,6 @@ import com.rgt.assignment.repository.RefreshTokenRepository;
 import com.rgt.assignment.util.JwtUtil;
 import io.jsonwebtoken.ExpiredJwtException;
 import java.util.Date;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -69,10 +68,7 @@ public class ReissueService {
     @Scheduled(cron = "0 0 0/3 * * *")
     @Transactional
     public void deleteExpiredRefreshToken() {
-        List<RefreshToken> refreshTokens = this.refreshTokenRepository.findByExpirationBefore(
-                new Date(System.currentTimeMillis()));
-        if (!refreshTokens.isEmpty()) {
-            this.refreshTokenRepository.deleteAll(refreshTokens);
-        }
+        refreshTokenRepository.findByExpirationBefore(new Date(System.currentTimeMillis()))
+                .ifPresent(refreshTokenRepository::deleteAll);
     }
 }
