@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: assignment
+
+  jpa:
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+        highlight_sql: true
+    defer-datasource-initialization: true
+
+  jwt:
+    secret: qwieqwjiudnqwkdqwndqwdiqywbqwndquikehqekwqjebq
+
+  sql:
+    init:
+      mode: always
+
+server:
+  port: 8090
